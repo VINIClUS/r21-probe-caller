@@ -1,0 +1,23 @@
+name: r21-probe-caller
+
+on:
+  workflow_dispatch:
+    inputs:
+      scenario:
+        description: sub (points 1 and 2) or r21 (point 3)
+        type: choice
+        options:
+          - sub
+          - r21
+        required: true
+
+permissions: {}
+
+jobs:
+  probe:
+    permissions:
+      id-token: write
+      contents: read
+    uses: VINIClUS/r21-probe-reusable/.github/workflows/probe.yml@cbf7f24a1022aa1c0988601c9cb9adc9d2e32d72
+    with:
+      scenario: ${{ inputs.scenario }}
