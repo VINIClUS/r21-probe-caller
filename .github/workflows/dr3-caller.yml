@@ -1,0 +1,25 @@
+name: dr3-caller
+on: workflow_dispatch
+permissions: {}
+jobs:
+  a1:
+    uses: VINIClUS/r21-probe-reusable/.github/workflows/dr3-a.yml@1cbca1dacca2a94a972d853c0a745838604eac3a
+    with:
+      label: a1
+  a2:
+    uses: VINIClUS/r21-probe-reusable/.github/workflows/dr3-a.yml@1cbca1dacca2a94a972d853c0a745838604eac3a
+    with:
+      label: a2
+  a3:
+    uses: VINIClUS/r21-probe-reusable/.github/workflows/dr3-a.yml@1cbca1dacca2a94a972d853c0a745838604eac3a
+    with:
+      label: a3
+  b1:
+    uses: VINIClUS/r21-probe-reusable/.github/workflows/dr3-b.yml@1cbca1dacca2a94a972d853c0a745838604eac3a
+    with:
+      label: b1
+  probe:
+    needs: [a1, a2, a3, b1]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo waiting-probe
